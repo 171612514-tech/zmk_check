@@ -8,20 +8,11 @@ manifest:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
 
-projects:
-  - name: zephyr
-    repo-path: zephyr
-    # ✅ 改这里，改成 zmkfirmware/zmk-zephyr 分支
-    revision: zmk-zephyr
-    import:
-      path-prefix: zephyr
-      file: west.yml
-
-
+  projects:
     - name: zmk
-      repo-path: zmk
+      path: zmk
       revision: main
       import: app/west.yml
 
   self:
-    path: app
+    path: config
