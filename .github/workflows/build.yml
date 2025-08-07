@@ -29,10 +29,10 @@ jobs:
           echo "ZEPHYR_TOOLCHAIN_VARIANT=zephyr" >> $GITHUB_ENV
           echo "ZEPHYR_SDK_INSTALL_DIR=$HOME/zephyr-sdk" >> $GITHUB_ENV
 
-      - name: Install west and init project
+      - name: Install west and initialize project
         run: |
           pip install west
-          west init -l --mf west.yml
+          west init -l . --mf west.yml
           west update
           west zephyr-export
 
@@ -43,7 +43,7 @@ jobs:
             -b nice_nano_v2 -- -DZMK_CONFIG=$(pwd)
 
       - name: Upload firmware artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: firmware-nice_nano_v2
           path: config/build/nice_nano_v2/zephyr/zmk.uf2
