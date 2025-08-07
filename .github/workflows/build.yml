@@ -1,0 +1,21 @@
+name: Build GPIO Detector
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: zephyrproject-rtos/action-zephyr-setup@v1
+
+      - name: Build for nice_nano_v2
+        run: |
+          west init -l .
+          west update
+          west build -b nice_nano_v2
